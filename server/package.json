@@ -1,5 +1,5 @@
 {
-  "name": "blog-api",
+  "name": "server",
   "version": "0.1.0",
   "description": "Simple blog API scaffold",
   "main": "server.js",

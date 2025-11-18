@@ -180,12 +180,6 @@ If using Render, put `MONGO_URI` in the service's environment variables and use 
 - Run the server and client locally and ensure changes are working.
 - Open a PR with a clear description and testing notes.
 
-## License & Contact
 
-Add a `LICENSE` file to the repository and choose a license (MIT is common for small projects).
-
-If you'd like, I can add a `LICENSE`, a separate `README.md` for the `client/`, or create a `CONTRIBUTING.md`.
-
----
 
 _Last updated: 2025-11-18_

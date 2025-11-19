@@ -28,6 +28,7 @@ async function start() {
 
   const server = app.listen(config.port, () => {
     console.log(`🚀 Server running on port ${config.port}`);
+   
     // console.log(`📍 API available at http://localhost:${config.port}/api`);
     // console.log(`❤️  Health check: http://localhost:${config.port}/api/health`);
   });

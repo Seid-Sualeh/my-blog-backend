@@ -4,8 +4,6 @@ const writerController = require("./writer/writer.controller");
 const writerService = require("./writer/writer.service");
 const authController = require("./auth/auth.controller");
 const authService = require("./auth/auth.service");
-const commentController = require("./comment/comment.controller");
-const commentService = require("./comment/comment.service");
 
 module.exports = {
   blogController,
@@ -14,6 +12,4 @@ module.exports = {
   writerService,
   authController,
   authService,
-  commentController,
-  commentService,
 };

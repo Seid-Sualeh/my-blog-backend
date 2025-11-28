@@ -4,14 +4,15 @@ class WriterController {
   // Create a new writer
   async createWriter(req, res, next) {
     try {
-      const writer = await writerService.createWriter(req.body);
-      res.status(201).json({
-        success: true,
-        message: "Writer created successfully",
-        data: writer,
-      });
+      const result = await writerService.createWriter(req.body);
+      
+      res.status(201).json(result);
     } catch (error) {
-      next(error);
+      console.error('Create writer error:', error);
+      res.status(400).json({
+        success: false,
+        message: error.message
+      });
     }
   }
 

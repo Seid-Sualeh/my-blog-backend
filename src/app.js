@@ -37,15 +37,30 @@ const corsOptions = {
       process.env.FRONTEND_URL,
     ].filter(Boolean);
 
+    // Debug logging for CORS
+    if (process.env.NODE_ENV === 'development') {
+      console.log(`CORS Check - Origin: ${origin}, Allowed: ${allowedOrigins.includes(origin)}`);
+    }
+
     if (allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
+      console.log(`CORS blocked origin: ${origin}`);
       callback(new Error('Not allowed by CORS'));
     }
   },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: false
+  allowedHeaders: [
+    'Content-Type', 
+    'Authorization', 
+    'X-Requested-With',
+    'Accept',
+    'Origin',
+    'Access-Control-Request-Method',
+    'Access-Control-Request-Headers'
+  ],
+  credentials: false,
+  optionsSuccessStatus: 200 // Some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
 app.use(cors(corsOptions));
@@ -104,3 +119,4 @@ app.use("*", (req, res) => {
 app.use(errorHandler);
 
 module.exports = app;
+

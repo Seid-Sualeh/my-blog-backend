@@ -5,11 +5,42 @@ class WriterService {
   // Create a new writer
   async createWriter(writerData) {
     try {
-      const writer = new Writer(writerData);
-      return await writer.save();
+      const { name, email, password, ...otherData } = writerData;
+
+      // Validate required fields
+      if (!name || !email || !password) {
+        throw new Error('Name, email, and password are required');
+      }
+
+      // Check if writer already exists
+      const existingWriter = await Writer.findOne({ 
+        email: email.toLowerCase().trim() 
+      });
+      
+      if (existingWriter) {
+        throw new Error('Writer with this email already exists');
+      }
+
+      // Create new writer (password will be hashed by the pre-save hook)
+      const writer = new Writer({
+        name: name.trim(),
+        email: email.toLowerCase().trim(),
+        password: password, // This will be hashed automatically
+        ...otherData
+      });
+
+      const savedWriter = await writer.save();
+
+      // Return writer data (exclude password)
+      const { password: _, ...writerResponse } = savedWriter.toObject();
+      
+      return {
+        success: true,
+        writer: writerResponse
+      };
     } catch (error) {
       if (error.code === 11000) {
-        throw new Error("Email already exists");
+        throw new Error('Writer with this email already exists');
       }
       throw new Error(`Error creating writer: ${error.message}`);
     }

@@ -103,10 +103,8 @@ class AuthService {
       };
 
       return {
-        writer: writerResponse,
-        token,
-        writerId: writer._id,
-        email: writer.email,
+        success: true,
+        writer: writerResponse
       };
     } catch (error) {
       throw new Error(`Error during login: ${error.message}`);

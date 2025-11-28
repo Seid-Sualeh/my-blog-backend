@@ -58,13 +58,12 @@ A production-ready RESTful API for a modern blog application, built with Express
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
-   cd my-blog-backend
+   git clone https://github.com/Seid-Sualeh/my-blog-backend.git
+   cd my-blog-backend/server
    ```
 
 2. **Install dependencies**
    ```bash
-   cd server
    npm install
    ```
 
